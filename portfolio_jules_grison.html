@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jules Grison - Portfolio</title>
+<style>
+:root {
+  --sand: #b8a99a;
+  --dark: #2c1f1a;
+  --dark-mid: #3d2e27;
+  --cream: #f5ede6;
+  --accent: #c4956a;
+  --light-sand: #e8ddd6;
+  --text-light: #f0e6de;
+  --muted: #8a7060;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--dark); font-family: Georgia, serif; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: #2c1f1a;
+  border-bottom: 1px solid rgba(196,149,106,0.2);
+}
+.logo { font-size: 1.2rem; font-weight: bold; color: var(--text-light); }
+.logo span { color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul a {
+  text-decoration: none; color: var(--light-sand);
+  font-family: 'Courier New', monospace; font-size: 0.7rem;
+  letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75;
+}
+nav ul a:hover { color: var(--accent); opacity: 1; }
+
+.hero {
+  min-height: 100vh; background: var(--dark);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 4rem 4rem 5rem;
+}
+.hero-label {
+  font-family: 'Courier New', monospace; font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: 5rem; font-weight: 900; color: var(--text-light);
+  line-height: 1.0; margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 1rem; color: var(--sand); line-height: 1.8;
+  max-width: 420px; margin-bottom: 3rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.hero-sub strong { color: var(--light-sand); }
+.hero-cta { display: flex; gap: 1rem; margin-bottom: 2rem; }
+.btn-p {
+  background: var(--accent); color: var(--dark); padding: 0.9rem 2rem;
+  border-radius: 2px; text-decoration: none;
+  font-family: 'Courier New', monospace; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: bold;
+}
+.btn-p:hover { background: var(--light-sand); }
+.btn-o {
+  border: 1px solid rgba(196,149,106,0.5); color: var(--light-sand);
+  padding: 0.9rem 2rem; border-radius: 2px; text-decoration: none;
+  font-family: 'Courier New', monospace; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.btn-o:hover { border-color: var(--accent); color: var(--accent); }
+.pills { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.pill {
+  background: rgba(196,149,106,0.15); border: 1px solid rgba(196,149,106,0.3);
+  color: var(--accent); padding: 0.4rem 1rem; border-radius: 20px;
+  font-family: 'Courier New', monospace; font-size: 0.65rem;
+}
+.hero-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 8rem 4rem 4rem;
+}
+.avatar {
+  width: 260px; height: 260px; border-radius: 50%;
+  background: var(--dark-mid); border: 3px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: var(--accent); font-style: italic;
+  box-shadow: 0 0 0 14px rgba(196,149,106,0.1), 0 0 0 28px rgba(196,149,106,0.05);
+}
+
+section { padding: 6rem 5rem; }
+.sec-head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 4rem; }
+.sec-num { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; }
+.sec-title { font-size: 2.2rem; font-weight: bold; color: var(--dark); }
+.sec-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--light-sand), transparent); }
+.dark-sec .sec-title { color: var(--text-light); }
+.dark-sec .sec-line { background: linear-gradient(to right, rgba(196,149,106,0.4), transparent); }
+
+#profil { background: var(--cream); }
+.profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.profil-text { font-size: 1rem; line-height: 1.9; color: var(--dark-mid); font-family: Helvetica, Arial, sans-serif; }
+.profil-text p { margin-bottom: 1rem; }
+.profil-text strong { color: var(--dark); font-weight: 600; }
+.contact-card { background: var(--dark); padding: 2.5rem; border-radius: 4px; border-left: 3px solid var(--accent); }
+.contact-card h3 { font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.ci { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--light-sand); font-size: 0.88rem; font-family: Helvetica, Arial, sans-serif; }
+.ci-icon { width: 32px; height: 32px; background: rgba(196,149,106,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+.lang-row { display: flex; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+.lb { background: rgba(196,149,106,0.2); border: 1px solid rgba(196,149,106,0.3); color: var(--accent); padding: 0.4rem 0.9rem; border-radius: 2px; font-family: 'Courier New', monospace; font-size: 0.65rem; }
+
+#competences { background: var(--dark); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.skill-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(196,149,106,0.2);
+  padding: 1.2rem 1.5rem; border-radius: 2px;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  position: relative; overflow: hidden;
+}
+.skill-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: var(--accent); transition: width 0.4s; }
+.skill-card:hover::after { width: 100%; }
+.skill-card:hover { background: rgba(196,149,106,0.08); border-color: rgba(196,149,106,0.5); transform: translateY(-3px); }
+.skill-name { color: var(--light-sand); font-family: 'Courier New', monospace; font-size: 0.82rem; }
+.skill-tag { display: inline-block; margin-top: 0.5rem; font-size: 0.62rem; color: var(--accent); font-family: 'Courier New', monospace; opacity: 0.7; }
+
+#experience { background: var(--light-sand); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
+.tl-item { position: relative; padding: 0 0 3.5rem 3rem; }
+.tl-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--light-sand); box-shadow: 0 0 0 3px rgba(196,149,106,0.2); }
+.tl-date { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.tl-role { font-size: 1.2rem; font-weight: bold; color: var(--dark); margin-bottom: 0.25rem; }
+.tl-org { font-size: 0.82rem; color: var(--accent); font-family: 'Courier New', monospace; margin-bottom: 1rem; }
+.tl-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.tl-tasks li { display: flex; gap: 0.75rem; font-size: 0.88rem; color: var(--dark-mid); line-height: 1.6; font-family: Helvetica, Arial, sans-serif; }
+.tl-tasks li::before { content: 'triangleRight'; color: var(--accent); flex-shrink: 0; font-size: 0.75rem; margin-top: 2px; }
+
+#formations { background: var(--cream); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-card { background: var(--dark); padding: 2rem; border-radius: 4px; border-bottom: 3px solid transparent; transition: border-color 0.3s, transform 0.3s; }
+.form-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.form-year { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.form-title { font-size: 1.05rem; color: var(--text-light); font-weight: bold; margin-bottom: 0.4rem; }
+.form-school { font-size: 0.82rem; color: var(--sand); font-style: italic; font-family: Helvetica, Arial, sans-serif; }
+
+#projets { background: var(--light-sand); }
+.project-card {
+  background: var(--dark); border-radius: 4px; overflow: hidden;
+  border: 1px solid rgba(196,149,106,0.2);
+  transition: transform 0.3s, border-color 0.3s;
+  max-width: 700px;
+}
+.project-card:hover { transform: translateY(-4px); border-color: rgba(196,149,106,0.5); }
+.project-header { padding: 2rem 2rem 1.5rem; border-bottom: 1px solid rgba(196,149,106,0.15); }
+.project-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.project-title { font-size: 1.5rem; color: var(--text-light); font-weight: bold; margin-bottom: 0.5rem; }
+.project-desc { font-size: 0.9rem; color: var(--sand); font-family: Helvetica, Arial, sans-serif; line-height: 1.7; }
+.project-body { padding: 1.5rem 2rem; }
+.project-modules { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+.mod-tag { background: rgba(196,149,106,0.12); border: 1px solid rgba(196,149,106,0.3); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 2px; font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 0.05em; }
+.project-link { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: var(--dark); padding: 0.75rem 1.5rem; border-radius: 2px; text-decoration: none; font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: bold; transition: background 0.3s; }
+.project-link:hover { background: var(--light-sand); }
+
+#loisirs { background: var(--dark); }
+.loisirs-wrap { display: flex; gap: 2rem; }
+.loisir { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(196,149,106,0.2); padding: 2.5rem; border-radius: 4px; text-align: center; transition: background 0.3s, border-color 0.3s, transform 0.3s; }
+.loisir:hover { background: rgba(196,149,106,0.08); border-color: rgba(196,149,106,0.5); transform: translateY(-5px); }
+.l-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.l-name { font-size: 1.3rem; color: var(--text-light); font-weight: bold; margin-bottom: 0.4rem; }
+.l-desc { font-size: 0.75rem; color: var(--sand); font-family: 'Courier New', monospace; }
+.badge-row { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
+.badge { background: rgba(196,149,106,0.18); border: 1px solid rgba(196,149,106,0.45); color: var(--accent); padding: 0.4rem 0.9rem; border-radius: 2px; font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+footer { background: var(--dark-mid); padding: 3rem 5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(196,149,106,0.2); }
+.f-name { font-size: 1.5rem; color: var(--text-light); font-weight: bold; }
+.f-name span { color: var(--accent); }
+.f-links { display: flex; gap: 2rem; }
+.f-link { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--sand); text-decoration: none; }
+.f-link:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { gap: 1rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  section { padding: 4rem 2rem; }
+  .profil-grid, .form-grid { grid-template-columns: 1fr; }
+  .loisirs-wrap { flex-direction: column; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Jules <span>Grison</span></div>
+  <ul>
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#competences">Comp&eacute;tences</a></li>
+    <li><a href="#experience">Exp&eacute;rience</a></li>
+    <li><a href="#formations">Formation</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#loisirs">Loisirs</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-label">// Portfolio &middot; 2026</p>
+    <h1>Jules<br><em>Grison</em></h1>
+    <p class="hero-sub">
+      &Eacute;tudiant en BTS SIO option SISR, sp&eacute;cialis&eacute; en
+      <strong>Administration Syst&egrave;mes &amp; R&eacute;seaux</strong>.
+      &Agrave; la recherche d&rsquo;une alternance en Licence Pro.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-p">Voir mon parcours</a>
+      <a href="mailto:julesgrison1@gmail.com" class="btn-o">Me contacter</a>
+    </div>
+    <div class="pills">
+      <span class="pill">Chartres, 28</span>
+      <span class="pill">BTS SIO &middot; SISR</span>
+      <span class="pill">Alternance recherch&eacute;e</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="avatar">JG</div>
+  </div>
+</div>
+
+<section id="profil">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Profil</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="profil-grid">
+    <div class="profil-text">
+      <p>&Eacute;tudiant en <strong>2e ann&eacute;e de BTS SIO option SISR</strong>, je ma&icirc;trise la configuration d&rsquo;&eacute;quipements r&eacute;seau, l&rsquo;administration syst&egrave;me Linux/Windows et la supervision d&rsquo;infrastructure.</p>
+      <p>Fort de deux stages en collectivit&eacute;s territoriales (Mairie de Chartres, Conseil D&eacute;partemental d&rsquo;Eure-et-Loir), je recherche un environnement technique stimulant pour approfondir mes comp&eacute;tences en <strong>administration et s&eacute;curit&eacute; des syst&egrave;mes et des r&eacute;seaux</strong>.</p>
+      <p>Je recherche une <strong>alternance en Licence Pro M&eacute;tiers de l&rsquo;informatique</strong>, sp&eacute;cialit&eacute; Administration et S&eacute;curit&eacute; des Syst&egrave;mes et des R&eacute;seaux.</p>
+    </div>
+    <div class="contact-card">
+      <h3>// Contact</h3>
+      <div class="ci"><div class="ci-icon">&#128222;</div><span>07 86 36 52 16</span></div>
+      <div class="ci"><div class="ci-icon">&#9993;</div><span>julesgrison1@gmail.com</span></div>
+      <div class="ci"><div class="ci-icon">&#128205;</div><span>9 rue de Patay, 28000 Chartres</span></div>
+      <div class="lang-row">
+        <span class="lb">FR Fran&ccedil;ais &mdash; natif</span>
+        <span class="lb">EN Anglais &mdash; B2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competences" class="dark-sec">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Comp&eacute;tences</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-name">Cisco &amp; Extreme Networks</div><div class="skill-tag">R&eacute;seau</div></div>
+    <div class="skill-card"><div class="skill-name">VLAN / NAC / DHCP</div><div class="skill-tag">R&eacute;seau</div></div>
+    <div class="skill-card"><div class="skill-name">SSH &amp; RDP</div><div class="skill-tag">Administration</div></div>
+    <div class="skill-card"><div class="skill-name">PRTG / IPAM</div><div class="skill-tag">Supervision</div></div>
+    <div class="skill-card"><div class="skill-name">VMware vSphere</div><div class="skill-tag">Virtualisation</div></div>
+    <div class="skill-card"><div class="skill-name">Linux &mdash; LVM, Samba</div><div class="skill-tag">Syst&egrave;me</div></div>
+    <div class="skill-card"><div class="skill-name">Palo Alto / Cortex EDR</div><div class="skill-tag">S&eacute;curit&eacute;</div></div>
+    <div class="skill-card"><div class="skill-name">Fail2Ban / Cybers&eacute;curit&eacute;</div><div class="skill-tag">S&eacute;curit&eacute;</div></div>
+    <div class="skill-card"><div class="skill-name">Active Directory</div><div class="skill-tag">Syst&egrave;me</div></div>
+    <div class="skill-card"><div class="skill-name">Windows Server</div><div class="skill-tag">Syst&egrave;me</div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Exp&eacute;rience</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">Janv. &mdash; F&eacute;v. 2026</div>
+      <div class="tl-role">Technicien Syst&egrave;mes &amp; R&eacute;seaux</div>
+      <div class="tl-org">Conseil D&eacute;partemental d&rsquo;Eure-et-Loir &mdash; Chartres</div>
+      <ul class="tl-tasks">
+        <li>Configuration d&rsquo;un switch Extreme Networks : VLAN, ports access/trunk, IP de management, SNTP</li>
+        <li>Migration d&rsquo;imprimantes et bornes WiFi vers des VLAN d&eacute;di&eacute;s (NAC, DHCP dynamique)</li>
+        <li>D&eacute;ploiement et administration de VMs Windows &amp; Linux sous VMware vSphere (LVM, Samba)</li>
+        <li>Inventaire r&eacute;seau : analyse MAC/OUI, classification des &eacute;quipements, coh&eacute;rence VLAN</li>
+        <li>Cybers&eacute;curit&eacute; : pare-feu Palo Alto / Cortex EDR, ESET, Fail2Ban, contr&ocirc;le d&rsquo;int&eacute;grit&eacute;</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Juin &mdash; Juil. 2025</div>
+      <div class="tl-role">Technicien Syst&egrave;mes &amp; R&eacute;seaux</div>
+      <div class="tl-org">Mairie de Chartres</div>
+      <ul class="tl-tasks">
+        <li>Configuration d&rsquo;&eacute;quipements r&eacute;seau Cisco (switches, routeurs)</li>
+        <li>Supervision et gestion du parc r&eacute;seau via PRTG Network Monitor</li>
+        <li>Gestion de l&rsquo;adressage IP avec IPAM</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Sept. 2024 &mdash; Juil. 2025</div>
+      <div class="tl-role">Service Civique &mdash; Employ&eacute; Polyvalent</div>
+      <div class="tl-org">Association sportive</div>
+      <ul class="tl-tasks">
+        <li>Gestion administrative et accueil du public</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2019 &mdash; Pr&eacute;sent</div>
+      <div class="tl-role">Animateur Squash</div>
+      <div class="tl-org">Squash de Chartres</div>
+      <ul class="tl-tasks">
+        <li>Animation aupr&egrave;s de publics en situation de handicap et de jeunes enfants</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="formations">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Formation</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-card">
+      <div class="form-year">2024 &mdash; Pr&eacute;sent</div>
+      <div class="form-title">BTS SIO &mdash; option SISR</div>
+      <div class="form-school">Lyc&eacute;e Fulbert, Chartres</div>
+    </div>
+    <div class="form-card">
+      <div class="form-year">Sept. &mdash; D&eacute;c. 2023</div>
+      <div class="form-title">BUT Informatique</div>
+      <div class="form-school">IUT d&rsquo;Orl&eacute;ans</div>
+    </div>
+    <div class="form-card">
+      <div class="form-year">2021 &mdash; 2023</div>
+      <div class="form-title">Baccalaur&eacute;at STI2D</div>
+      <div class="form-school">Lyc&eacute;e Jehan de Beauce</div>
+    </div>
+    <div class="form-card">
+      <div class="form-year">Janv. 2019</div>
+      <div class="form-title">Brevet d&rsquo;Animateur Mini-Squash</div>
+      <div class="form-school">F&eacute;d&eacute;ration Fran&ccedil;aise de Squash</div>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Projets</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-label">// Projet BTS SIO &mdash; 2025/2026</div>
+      <div class="project-title">SportLudique</div>
+      <div class="project-desc">
+        Documentation technique compl&egrave;te d&rsquo;une infrastructure r&eacute;seau d&eacute;ploy&eacute;e pour la soci&eacute;t&eacute; fictive SportLudique.
+        Le projet couvre l&rsquo;ensemble de la cha&icirc;ne : routage, switching, firewall, serveurs, services r&eacute;seau et automatisation.
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-modules">
+        <span class="mod-tag">Switch Core</span>
+        <span class="mod-tag">Routeur</span>
+        <span class="mod-tag">Firewall Stormshield</span>
+        <span class="mod-tag">DNS</span>
+        <span class="mod-tag">Serveur RAID</span>
+        <span class="mod-tag">HMailServer</span>
+        <span class="mod-tag">Ansible</span>
+        <span class="mod-tag">Reverse Proxy</span>
+        <span class="mod-tag">WordPress</span>
+        <span class="mod-tag">Infrastructure logique</span>
+      </div>
+      <a href="https://julesgris.github.io/Anne-2025-2026/" target="_blank" class="project-link">
+        &#128279; Voir la documentation
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="loisirs" class="dark-sec">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="loisirs-wrap">
+    <div class="loisir">
+      <div class="l-icon">&#127934;</div>
+      <div class="l-name">Squash</div>
+      <div class="l-desc">Animateur certifi&eacute; FFSquash &middot; 2019 &mdash; Pr&eacute;sent</div>
+      <div class="badge-row">
+        <span class="badge">Top 100 Fran&ccedil;ais</span>
+        <span class="badge">Nationale 2</span>
+      </div>
+    </div>
+    <div class="loisir">
+      <div class="l-icon">&#129495;</div>
+      <div class="l-name">Escalade</div>
+      <div class="l-desc">Pratique r&eacute;guli&egrave;re</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-name">Jules <span>Grison</span></div>
+  <div class="f-links">
+    <a href="tel:0786365216" class="f-link">07 86 36 52 16</a>
+    <a href="mailto:julesgrison1@gmail.com" class="f-link">julesgrison1@gmail.com</a>
+    <span class="f-link">Chartres, 28000</span>
+  </div>
+</footer>
+
+</body>
+</html>
